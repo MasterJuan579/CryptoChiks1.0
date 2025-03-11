@@ -1,0 +1,7 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/signin.uss?fileID=7433441132597879392&amp;guid=7853d9d26b63afc4697fb59ff5ad2694&amp;type=3#signin" />
+    <ui:VisualElement name="Contenedor" style="flex-grow: 1;">
+        <ui:Label text="Sign In" name="SignIn" class="signin" />
+        <ui:Label text="Hi there! Nice to see you again." class="signin" style="color: rgb(57, 65, 99); font-size: 25px;" />
+    </ui:VisualElement>
+</ui:UXML>
