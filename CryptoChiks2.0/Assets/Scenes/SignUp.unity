@@ -535,12 +535,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 300720624}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.91, y: 3.84, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 100}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -191, y: 384, z: -9000}
+  m_LocalScale: {x: 10, y: 10, z: 10000}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 632781064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &301819612
 GameObject:
@@ -758,12 +758,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 361760772}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.57, y: 1.8, z: 0}
-  m_LocalScale: {x: 1.644831, y: 0.26152754, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -257, y: 180, z: -9000}
+  m_LocalScale: {x: 164.4831, y: 26.152754, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 632781064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &566313555
 GameObject:
@@ -949,6 +949,9 @@ RectTransform:
   - {fileID: 1589398880}
   - {fileID: 1306515934}
   - {fileID: 2146440604}
+  - {fileID: 300720626}
+  - {fileID: 361760774}
+  - {fileID: 1598350557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3330,12 +3333,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598350555}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.4, y: 1.8, z: 0}
-  m_LocalScale: {x: 1.644831, y: 0.26152754, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 340, y: 180, z: -9000}
+  m_LocalScale: {x: 164.4831, y: 26.152754, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 632781064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1653431085
 GameObject:
@@ -4799,6 +4802,3 @@ SceneRoots:
   - {fileID: 632781064}
   - {fileID: 9211214}
   - {fileID: 736827288}
-  - {fileID: 300720626}
-  - {fileID: 361760774}
-  - {fileID: 1598350557}
