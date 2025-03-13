@@ -880,8 +880,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.485, y: -304}
-  m_SizeDelta: {x: 530.77, y: 62.67}
+  m_AnchoredPosition: {x: -8.485, y: -300}
+  m_SizeDelta: {x: 530, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674652038
 MonoBehaviour:
@@ -926,7 +926,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674652039}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 468515375}
+        m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: HomePage
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &674652039
 MonoBehaviour:
   m_ObjectHideFlags: 0
