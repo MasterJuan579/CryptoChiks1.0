@@ -388,16 +388,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 468515375}
-        m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
+      - m_Target: {fileID: 736827287}
+        m_TargetAssemblyTypeName: ChangeScene, Assembly-CSharp
+        m_MethodName: LoadForgotPasswordScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: ForgotPasswordScene
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &305542078
@@ -499,50 +499,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 305542075}
   m_CullTransparentMesh: 1
---- !u!1 &468515374
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 468515376}
-  - component: {fileID: 468515375}
-  m_Layer: 0
-  m_Name: SceneController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &468515375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468515374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44427b42549870044883a85000da0322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &468515376
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468515374}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.6084648, y: -0.2618043, z: 950.9367}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &632781060
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +676,7 @@ GameObject:
   - component: {fileID: 672428481}
   - component: {fileID: 672428480}
   m_Layer: 5
-  m_Name: Email TEXT
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -857,7 +813,7 @@ GameObject:
   - component: {fileID: 674652039}
   - component: {fileID: 674652038}
   m_Layer: 5
-  m_Name: Sign_In BUTTON
+  m_Name: Sign_In
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -880,8 +836,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -8.485, y: -300}
-  m_SizeDelta: {x: 530, y: 88}
+  m_AnchoredPosition: {x: -8.485, y: -304}
+  m_SizeDelta: {x: 530.77, y: 62.67}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &674652038
 MonoBehaviour:
@@ -926,19 +882,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674652039}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 468515375}
-        m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: HomePage
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &674652039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +996,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704580807}
   m_CullTransparentMesh: 1
+--- !u!1 &736827286
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 736827288}
+  - component: {fileID: 736827287}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &736827287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736827286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7638134440a1b3a44b28a5d4f0307918, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &736827288
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736827286}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.3288792, y: 0.26806808, z: 1058.3192}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784572603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1453,7 @@ GameObject:
   - component: {fileID: 1195992148}
   - component: {fileID: 1195992147}
   m_Layer: 5
-  m_Name: Sign In TEXT
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1601,7 +1589,7 @@ GameObject:
   - component: {fileID: 1317618431}
   - component: {fileID: 1317618430}
   m_Layer: 5
-  m_Name: WELCOME TEXT
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1952,7 +1940,7 @@ GameObject:
   - component: {fileID: 1400387247}
   - component: {fileID: 1400387246}
   m_Layer: 5
-  m_Name: Line Image 2
+  m_Name: Image (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2027,7 +2015,7 @@ GameObject:
   - component: {fileID: 1500703579}
   - component: {fileID: 1500703578}
   m_Layer: 5
-  m_Name: Password TEXT
+  m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2546,19 +2534,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1895483983}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 468515375}
-        m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: SignUp
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1895483983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2722,7 +2698,7 @@ GameObject:
   - component: {fileID: 2042510159}
   - component: {fileID: 2042510158}
   m_Layer: 5
-  m_Name: Line Image
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3109,4 +3085,4 @@ SceneRoots:
   - {fileID: 904434411}
   - {fileID: 632781064}
   - {fileID: 9211214}
-  - {fileID: 468515376}
+  - {fileID: 736827288}
