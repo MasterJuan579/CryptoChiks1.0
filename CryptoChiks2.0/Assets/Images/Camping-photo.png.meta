@@ -1,0 +1,637 @@
+fileFormatVersion: 2
+guid: 6c0089e8ea15edc48a2c714981c442e7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 762893611774460086
+    second: Camping-photo_0
+  - first:
+      213: 2906649218608716449
+    second: Camping-photo_1
+  - first:
+      213: 4972111051344878447
+    second: Camping-photo_2
+  - first:
+      213: -1142977719076518454
+    second: Camping-photo_3
+  - first:
+      213: -5974471467208376001
+    second: Camping-photo_4
+  - first:
+      213: -2275121297214410033
+    second: Camping-photo_5
+  - first:
+      213: -7504066396244044832
+    second: Camping-photo_6
+  - first:
+      213: -3418521712080209352
+    second: Camping-photo_7
+  - first:
+      213: 6594719272700344307
+    second: Camping-photo_8
+  - first:
+      213: -2394569225678838669
+    second: Camping-photo_9
+  - first:
+      213: 1506013610967367738
+    second: Camping-photo_10
+  - first:
+      213: -6056528171118551277
+    second: Camping-photo_11
+  - first:
+      213: 716905638358157963
+    second: Camping-photo_12
+  - first:
+      213: 4554519088448249340
+    second: Camping-photo_13
+  - first:
+      213: -556459144191025854
+    second: Camping-photo_14
+  - first:
+      213: 8179782815558815188
+    second: Camping-photo_15
+  - first:
+      213: 6961510902043596140
+    second: Camping-photo_16
+  - first:
+      213: -7249740640463768829
+    second: Camping-photo_17
+  - first:
+      213: 5660171314802699902
+    second: Camping-photo_18
+  - first:
+      213: -5780632711632717489
+    second: Camping-photo_19
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Camping-photo_0
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 184
+        width: 42
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b04b3ba2b7569a00800000000000000
+      internalID: 762893611774460086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_1
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 230
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aad6d1701e765820800000000000000
+      internalID: 2906649218608716449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_2
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 203
+        width: 147
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6b943768ac700540800000000000000
+      internalID: 4972111051344878447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_3
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 184
+        width: 37
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac5024cf1d35320f0800000000000000
+      internalID: -1142977719076518454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_4
+      rect:
+        serializedVersion: 2
+        x: 316
+        y: 185
+        width: 61
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f31865ccad9661da0800000000000000
+      internalID: -5974471467208376001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_5
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 168
+        width: 39
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2fb9afb352d60e0800000000000000
+      internalID: -2275121297214410033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_6
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 184
+        width: 38
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e39de0fe533cd790800000000000000
+      internalID: -7504066396244044832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_7
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 185
+        width: 11
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83abf7e6d98fe80d0800000000000000
+      internalID: -3418521712080209352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_8
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 185
+        width: 38
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f7f9bafc36258b50800000000000000
+      internalID: 6594719272700344307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_9
+      rect:
+        serializedVersion: 2
+        x: 534
+        y: 169
+        width: 43
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374a459e9f7c4ced0800000000000000
+      internalID: -2394569225678838669
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_10
+      rect:
+        serializedVersion: 2
+        x: 633
+        y: 203
+        width: 146
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a300d94666f66e410800000000000000
+      internalID: 1506013610967367738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_11
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 89
+        width: 53
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f155c97b3e2fba0800000000000000
+      internalID: -6056528171118551277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_12
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 89
+        width: 50
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8a00d731e5f2f900800000000000000
+      internalID: 716905638358157963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_13
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 91
+        width: 57
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfd91b5eaf6e43f30800000000000000
+      internalID: 4554519088448249340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_14
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 89
+        width: 51
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24dd97a4b5f0748f0800000000000000
+      internalID: -556459144191025854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_15
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 89
+        width: 53
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd4a35e12d648170800000000000000
+      internalID: 8179782815558815188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_16
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 89
+        width: 27
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c65515028414c9060800000000000000
+      internalID: 6961510902043596140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_17
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 89
+        width: 53
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 303b17b5c4fb36b90800000000000000
+      internalID: -7249740640463768829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_18
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 89
+        width: 40
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7eabaa62d7fc8e40800000000000000
+      internalID: 5660171314802699902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camping-photo_19
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 89
+        width: 48
+        height: 59
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f49f0260d2117cfa0800000000000000
+      internalID: -5780632711632717489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Camping-photo_0: 762893611774460086
+      Camping-photo_1: 2906649218608716449
+      Camping-photo_10: 1506013610967367738
+      Camping-photo_11: -6056528171118551277
+      Camping-photo_12: 716905638358157963
+      Camping-photo_13: 4554519088448249340
+      Camping-photo_14: -556459144191025854
+      Camping-photo_15: 8179782815558815188
+      Camping-photo_16: 6961510902043596140
+      Camping-photo_17: -7249740640463768829
+      Camping-photo_18: 5660171314802699902
+      Camping-photo_19: -5780632711632717489
+      Camping-photo_2: 4972111051344878447
+      Camping-photo_3: -1142977719076518454
+      Camping-photo_4: -5974471467208376001
+      Camping-photo_5: -2275121297214410033
+      Camping-photo_6: -7504066396244044832
+      Camping-photo_7: -3418521712080209352
+      Camping-photo_8: 6594719272700344307
+      Camping-photo_9: -2394569225678838669
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

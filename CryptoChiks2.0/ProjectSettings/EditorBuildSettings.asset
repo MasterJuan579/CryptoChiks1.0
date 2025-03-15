@@ -23,6 +23,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game1.unity
     guid: db2b4f0ea3d431e4ba3cebac68986b72
+  - enabled: 1
+    path: Assets/Scenes/Missions.unity
+    guid: 5cbfbbd7a66dbc549ae6cc26de423f96
+  - enabled: 1
+    path: Assets/Scenes/Achievements.unity
+    guid: 171b0b9261e92824eb73763db7916f49
+  - enabled: 1
+    path: Assets/Scenes/NewGame.unity
+    guid: b79d51a1c5d7e1d44a94cf1e7b59f9b2
+  - enabled: 1
+    path: Assets/Scenes/ForgotPasswordScene.unity
+    guid: da79de504cfc28fc4a3da21eb5f8c92a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
