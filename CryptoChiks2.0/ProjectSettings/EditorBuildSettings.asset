@@ -35,6 +35,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ForgotPasswordScene.unity
     guid: da79de504cfc28fc4a3da21eb5f8c92a
+  - enabled: 1
+    path: Assets/Scenes/SignUp.unity
+    guid: 9f9d57df890f4af48ba1a5323f15391a
+  - enabled: 1
+    path: Assets/Scenes/NewPassword.unity
+    guid: 3d5c57996fa18c22bbdcedcc0c38d7cf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
