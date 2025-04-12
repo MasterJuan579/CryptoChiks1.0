@@ -388,7 +388,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 468515375}
+      - m_Target: {fileID: 468515377}
         m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 5
@@ -508,7 +508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 468515376}
-  - component: {fileID: 468515375}
+  - component: {fileID: 468515377}
   m_Layer: 0
   m_Name: SceneController
   m_TagString: Untagged
@@ -516,18 +516,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &468515375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 468515374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44427b42549870044883a85000da0322, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &468515376
 Transform:
   m_ObjectHideFlags: 0
@@ -543,6 +531,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &468515377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 468515374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44427b42549870044883a85000da0322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &632781060
 GameObject:
   m_ObjectHideFlags: 0
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: 674652039}
   - component: {fileID: 674652038}
   m_Layer: 5
-  m_Name: Sign_In BUTTON
+  m_Name: botonEnviar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -927,7 +927,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 468515375}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 5
@@ -1288,7 +1288,7 @@ GameObject:
   - component: {fileID: 932710703}
   - component: {fileID: 932710702}
   m_Layer: 5
-  m_Name: Password_Input
+  m_Name: "inputContrase\xF1a"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1453,6 +1453,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 932710700}
   m_CullTransparentMesh: 1
+--- !u!1 &996064052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 996064054}
+  - component: {fileID: 996064053}
+  m_Layer: 0
+  m_Name: SignIn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &996064053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996064052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c975ab05d49f0d14480e023103204658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputUsuario: {fileID: 2113729410}
+  "inputContrase\xF1a": {fileID: 932710702}
+  botonEnviar: {fileID: 674652038}
+--- !u!4 &996064054
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996064052}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.9083068, y: -0.11658417, z: 11.83791}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195992145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2594,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 468515375}
+      - m_Target: {fileID: 468515377}
         m_TargetAssemblyTypeName: ChangeSceneGOD, Assembly-CSharp
         m_MethodName: ChangeScene
         m_Mode: 5
@@ -2798,7 +2845,7 @@ GameObject:
   - component: {fileID: 2113729411}
   - component: {fileID: 2113729410}
   m_Layer: 5
-  m_Name: Email_Input
+  m_Name: inputUsuario
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3110,3 +3157,4 @@ SceneRoots:
   - {fileID: 632781064}
   - {fileID: 9211214}
   - {fileID: 468515376}
+  - {fileID: 996064054}
