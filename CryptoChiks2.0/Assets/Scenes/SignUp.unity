@@ -6162,7 +6162,7 @@ MonoBehaviour:
   dropdownDia: {fileID: 1338832828}
   dropdownMes: {fileID: 712049559}
   dropdownAnio: {fileID: 102603697}
-  botonContinuar: {fileID: 674652036}
+  botonContinuar: {fileID: 674652038}
 --- !u!4 &1530369299
 Transform:
   m_ObjectHideFlags: 0
