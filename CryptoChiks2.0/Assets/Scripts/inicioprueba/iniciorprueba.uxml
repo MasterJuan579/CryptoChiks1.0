@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+  <ui:VisualElement style="flex-direction: column; align-items: center; justify-content: center; padding: 30px; gap: 20px;">
+
+    <ui:Label text="Ingresa tu nombre" style="unity-font-size: 18px; color: white;" />
+    <ui:TextField name="NombreInput" style="width: 200px;" />
+
+    <ui:Button name="BotonComenzar" text="Comenzar" style="width: 120px; height: 35px;"/>
+    <ui:Label name="Estado" text="" style="unity-font-size: 14px; color: red;" />
+
+  </ui:VisualElement>
+</ui:UXML>
