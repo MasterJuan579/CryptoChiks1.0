@@ -13,7 +13,7 @@ public class Salida: MonoBehaviour
     public struct RespuestaServidor
     {
         public string mensaje;
-        public int idUsuario;
+        public int id_sesion;
     }
 
     void Start()
@@ -26,7 +26,7 @@ public class Salida: MonoBehaviour
 
     private void EnviarDatosJSON_Salida()
     {
-        if (Sesion.idUsuario == -1)
+        if (Sesion.id_sesion == -1)
         {
             Debug.LogError("No hay usuario autenticado");
             return;
@@ -40,14 +40,14 @@ public class Salida: MonoBehaviour
     {
         RespuestaServidor respuestaServidor = new RespuestaServidor
         {
-            idUsuario = Sesion.idUsuario,
-            mensaje = "Usuario Encontrado"
+            mensaje = "Usuario Encontrado",
+            id_sesion = Sesion.id_sesion
         };
 
         string datosJSONsalida = JsonUtility.ToJson(respuestaServidor);
         Debug.Log("Datos de Salida: " + datosJSONsalida);
 
-        UnityWebRequest request_salida = new UnityWebRequest("http://10.48.99.132:3000/unity/recibeJSON_salida", "POST");
+        UnityWebRequest request_salida = new UnityWebRequest("https://kxg5mwnkjicsaxwljq7lgxv5je0vnxwu.lambda-url.us-east-1.on.aws/", "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(datosJSONsalida);
 
         request_salida.uploadHandler = new UploadHandlerRaw(bodyRaw);

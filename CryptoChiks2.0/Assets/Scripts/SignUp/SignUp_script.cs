@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 public class SignUpCanvas : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class SignUpCanvas : MonoBehaviour
     public TMP_Dropdown dropdownAnio;
 
     [Header("Botones")]
-    public GameObject botonContinuar;
+    public Button botonContinuar;
 
     [System.Serializable]
     public struct UsuarioNuevo
@@ -54,13 +55,12 @@ public class SignUpCanvas : MonoBehaviour
 
         dropdownAnio.ClearOptions();
         dropdownAnio.AddOptions(Enumerable.Range(1920, DateTime.Now.Year - 1920 + 1).Reverse().Select(a => a.ToString()).ToList());
+        botonContinuar.onClick.AddListener(EnviarRegistro);
     }
 
     public void EnviarRegistro()
     {
         StartCoroutine(EnviarDatosRegistro());
-        SceneManager.LoadScene("LoginScene");
-
     }
 
     private IEnumerator EnviarDatosRegistro()
@@ -85,7 +85,7 @@ public class SignUpCanvas : MonoBehaviour
         string datosJSON = JsonUtility.ToJson(usuario);
         Debug.Log("Datos enviados: " + datosJSON);
 
-        UnityWebRequest request = new UnityWebRequest("http://192.168.1.101:3000/unity/signup", "POST");
+        UnityWebRequest request = new UnityWebRequest("https://eplu7fzz3pp5bh5toqxvg6tqxa0bqhtw.lambda-url.us-east-1.on.aws/", "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(datosJSON);
 
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
@@ -96,13 +96,27 @@ public class SignUpCanvas : MonoBehaviour
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("Registro exitoso: " + request.downloadHandler.text);
-            SceneManager.LoadScene("LoginScene");
+            string respuesta = request.downloadHandler.text;
+            Debug.Log("Respuesta del servidor: " + respuesta);
+
+            RespuestaServidor respuestaServidor = JsonUtility.FromJson<RespuestaServidor>(respuesta);
+
+            if (respuestaServidor.mensaje == "Registro exitoso")
+            {
+                Debug.Log("Registro exitoso, cambiando a LoginScene");
+                SceneManager.LoadScene("LoginScene");
+            }
+            else
+            {
+                Debug.LogWarning("El servidor respondió con: " + respuestaServidor.mensaje);
+                // Aquí puedes mostrar un mensaje de error en pantalla si quieres
+            }
         }
         else
         {
             Debug.LogError("Error al registrar: " + request.error);
         }
+
 
         request.Dispose();
     }

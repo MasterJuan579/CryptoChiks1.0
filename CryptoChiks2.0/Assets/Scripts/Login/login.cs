@@ -11,7 +11,6 @@ public class login : MonoBehaviour
     public TMP_InputField inputUsuario;
     public TMP_InputField inputContraseña;
 
-
     [Header("Botones")]
     public Button botonEnviar;
 
@@ -27,11 +26,11 @@ public class login : MonoBehaviour
     {
         public string mensaje;
         public int idUsuario;
+        public int id_sesion;
     }
 
     void Start()
     {
-        // Asignación de eventos
         botonEnviar.onClick.AddListener(EnviarDatosJSONentrada);
     }
 
@@ -39,6 +38,7 @@ public class login : MonoBehaviour
     {
         StartCoroutine(SubirDatosJSON_Entrada());
     }
+
     private IEnumerator SubirDatosJSON_Entrada()
     {
         DatosUsuario datos;
@@ -47,10 +47,9 @@ public class login : MonoBehaviour
 
         string datosJSON = JsonUtility.ToJson(datos);
 
-        Debug.Log($"Usuario: {datos.email}, Contraseña: {datos.password}");
-        Debug.Log($"JSON enviado: {datosJSON}");
+        Debug.Log($"Enviando: {datosJSON}");
 
-        UnityWebRequest request = new UnityWebRequest("https://gawrllxwezdn5cu4lfixiwyzaq0xtftd.lambda-url.us-east-1.on.aws/", "POST");
+        UnityWebRequest request = new UnityWebRequest("https://toz3gahzj3xaytjuup7jkipqai0flfgy.lambda-url.us-east-1.on.aws/", "POST");
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(datosJSON);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -63,34 +62,43 @@ public class login : MonoBehaviour
             string respuesta = request.downloadHandler.text;
             Debug.Log("Respuesta JSON cruda: " + respuesta);
 
-            RespuestaServidor respuestaServidor = JsonUtility.FromJson<RespuestaServidor>(respuesta);
+            bool loginExitoso = false;
 
-            if (respuestaServidor.mensaje == "Login exitoso")
+            try
             {
-                Sesion.idUsuario = respuestaServidor.idUsuario;
-                Debug.Log("Login exitoso - ID usuario guardado: " + Sesion.idUsuario);
-                StartCoroutine(Verificacion(respuesta));
+                RespuestaServidor respuestaServidor = JsonUtility.FromJson<RespuestaServidor>(respuesta);
+
+                if (respuestaServidor.mensaje == "Login exitoso")
+                {
+                    Sesion.idUsuario = respuestaServidor.idUsuario;
+                    Sesion.id_sesion = respuestaServidor.id_sesion;
+
+                    Debug.Log("Login exitoso. ID Usuario: " + Sesion.idUsuario + ", ID Sesión: " + Sesion.id_sesion);
+                    loginExitoso = true;
+                }
+                else
+                {
+                    Debug.LogWarning("Login fallido - mensaje del servidor: " + respuestaServidor.mensaje);
+                }
             }
-            else
+            catch (System.Exception ex)
             {
-                Debug.Log("Login Fallido");
+                Debug.LogError("Error al parsear la respuesta del servidor: " + ex.Message);
+                Debug.LogError("Contenido recibido: " + respuesta);
             }
+
+            if (loginExitoso)
+            {
+                yield return new WaitForSeconds(1f);
+                SceneManager.LoadScene("HomePage");
+            }
+
         }
         else
         {
-            Debug.LogError("Error de conexión: " + request.responseCode);
+            Debug.LogError("Error de red: " + request.error);
         }
 
         request.Dispose();
-    }
-
-    private IEnumerator Verificacion(string jsonRespuesta)
-    {
-        RespuestaServidor respuesta = JsonUtility.FromJson<RespuestaServidor>(jsonRespuesta);
-        if (respuesta.mensaje == "Login exitoso")
-        {
-            yield return new WaitForSeconds(1f);
-            SceneManager.LoadScene("HomePage");
-        }
     }
 }
