@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5b2dbd3bce451984e8abebb0cb9c576f
+guid: 73fee8976a7c82a42837fd44a502e651
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8377215415212577721
-    second: fondoCRIPTOPixelArt_0
+      213: -8942916571838464817
+    second: CryptoChickDuo2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +96,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fondoCRIPTOPixelArt_0
+      name: CryptoChickDuo2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1536
-        height: 1024
+        x: 72
+        y: 38
+        width: 371
+        height: 436
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9b31ca62909d14470800000000000000
-      internalID: 8377215415212577721
+      spriteID: fcc3d9f62c064e380800000000000000
+      internalID: -8942916571838464817
       vertices: []
       indices: 
       edges: []
@@ -147,8 +134,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      fondoCRIPTOPixelArt_0: 8377215415212577721
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
