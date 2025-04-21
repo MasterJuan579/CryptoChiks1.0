@@ -28,6 +28,12 @@ public class LeccionController2 : MonoBehaviour
     private Button botonReiniciar;
     private Button botonComprarVida;
 
+    private VisualElement panelRecompensa;
+    private Label textoRecompensa;
+    private Button botonRecompensa;
+
+
+
 
     void Start()
     {
@@ -45,11 +51,12 @@ public class LeccionController2 : MonoBehaviour
         botonReiniciar = root.Q<Button>("BotonReiniciar");
         botonComprarVida = root.Q<Button>("BotonComprarVidas");
 
+        panelRecompensa = root.Q<VisualElement>("PanelRecompensa");
+        textoRecompensa = root.Q<Label>("Recompensa");
+        botonRecompensa = root.Q<Button>("BotonRecompensa");
 
         textoVidas = root.Q<Label>("TextoVidas");
         textoMonedas = root.Q<Label>("Monedas");
-
-        panelSinVidas.style.display = DisplayStyle.None;
 
         // Acción de repetir lección
         botonReiniciar.clicked += () =>
@@ -79,6 +86,11 @@ public class LeccionController2 : MonoBehaviour
             }
         };
 
+        botonRecompensa.clicked += () =>
+        {
+            SceneManager.LoadScene("Seleccion_Leccion");
+        };
+
 
         botonContinuar.clicked += ContinuarPregunta;
         botonContinuar.visible = false;
@@ -94,7 +106,7 @@ public class LeccionController2 : MonoBehaviour
 
     private IEnumerator CargarMonedas()
     {
-        string url = "";
+        string url = "https://kagxbqdi2jtdrme6la324jh4xq0jwtfj.lambda-url.us-east-1.on.aws/";
         UnityWebRequest request = UnityWebRequest.Get(url + SesionManager.instancia.idUsuario);
 
         yield return request.SendWebRequest();
@@ -128,7 +140,7 @@ public class LeccionController2 : MonoBehaviour
 
     private IEnumerator GuardarMonedas()
     {
-        string url = "https://tuservidor.com/api/actualizar-monedas/";
+        string url = "https://c7crqmpribvrys2kd4o3ye72ri0fjodl.lambda-url.us-east-1.on.aws/";
         Monedas nueva = new Monedas { id_usuario = SesionManager.instancia.idUsuario, monedas = monedas };
         string json = JsonUtility.ToJson(nueva);
 
@@ -259,11 +271,11 @@ public class LeccionController2 : MonoBehaviour
         {
             Debug.Log("🏁 Se completaron todas las preguntas.");
             preguntaLabel.text = "Lesson complete!";
-            foreach (var btn in botones) btn.visible = false;
-            botonContinuar.visible = false;
 
             StartCoroutine(EnviarExamenRespuestas());
             StartCoroutine(ActualizarProgreso());
+
+            MostrarRecompensa();
 
             return;
         }
@@ -331,8 +343,24 @@ public class LeccionController2 : MonoBehaviour
 
     }
 
+    void MostrarRecompensa()
+    {
+        foreach (var btn in botones)
+        {
+            btn.visible = false;
+        }
 
+        panelRecompensa.style.display = DisplayStyle.Flex;
+        botonRecompensa.visible = true;
 
+        int recompensa = CalcularRecompensa();
+
+        textoRecompensa.text = $"x{recompensa}";
+        monedas += recompensa;
+
+        ActualizarMonedas();
+        StartCoroutine(GuardarMonedas());
+    }
 
     int CalcularPuntaje()
     {
@@ -349,6 +377,19 @@ public class LeccionController2 : MonoBehaviour
 
         float porcentaje = ((float)correctas / total) * 100f;
         return Mathf.RoundToInt(porcentaje);
+    }
+
+    int CalcularRecompensa()
+    {
+        int correctas = 0;
+
+        foreach (var respuesta in respuestasUsuario)
+        {
+            if(respuesta.es_correcta == 1)
+                correctas++;
+        }
+        int recompensa = correctas * 12;
+        return recompensa;
     }
 
 
@@ -389,7 +430,6 @@ public class LeccionController2 : MonoBehaviour
 
             RespuestaExamen respuesta = JsonUtility.FromJson<RespuestaExamen>(jsonRespuesta);
             Debug.Log($"🎯 Tu puntaje fue: {respuesta.puntaje}");
-            SceneManager.LoadScene("HomePage");
         }
         else
         {
@@ -397,39 +437,61 @@ public class LeccionController2 : MonoBehaviour
         }
     }
 
-
-
     private IEnumerator ActualizarProgreso()
     {
-        string url = "https://tuprogresoapi.lambda-url.us-east-1.on.aws/"; // Cambia por tu URL real
+        string urlGet = "https://tuprogresoapi-get.lambda-url.us-east-1.on.aws/";
+        UnityWebRequest requestGet = UnityWebRequest.Get(urlGet + "?id_usuario=" + SesionManager.instancia.idUsuario + "&id_curso=" + SesionManager.instancia.idCurso);
 
-        Progreso progreso = new Progreso
+        yield return requestGet.SendWebRequest();
+
+        if (requestGet.result == UnityWebRequest.Result.Success)
         {
-            id_usuario = SesionManager.instancia.idUsuario,
-            id_curso = SesionManager.instancia.idCurso,
-            id_leccion = SesionManager.instancia.idLeccion
-        };
+            Progreso progresoActual = JsonUtility.FromJson<Progreso>(requestGet.downloadHandler.text);
 
-        string json = JsonUtility.ToJson(progreso);
+            int leccionActual = SesionManager.instancia.idLeccion;
 
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
+            if (leccionActual > progresoActual.id_leccion)
+            {
+                // Solo actualizamos si la lección que acabas de terminar es mayor a la registrada
+                string urlPost = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
 
-        yield return request.SendWebRequest();
+                Progreso nuevoProgreso = new Progreso
+                {
+                    id_usuario = SesionManager.instancia.idUsuario,
+                    id_curso = SesionManager.instancia.idCurso,
+                    id_leccion = leccionActual
+                };
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("✅ Progreso actualizado correctamente");
-            SceneManager.LoadScene("HomePage");
+                string json = JsonUtility.ToJson(nuevoProgreso);
+
+                UnityWebRequest requestPost = new UnityWebRequest(urlPost, "POST");
+                byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+                requestPost.uploadHandler = new UploadHandlerRaw(bodyRaw);
+                requestPost.downloadHandler = new DownloadHandlerBuffer();
+                requestPost.SetRequestHeader("Content-Type", "application/json");
+
+                yield return requestPost.SendWebRequest();
+
+                if (requestPost.result == UnityWebRequest.Result.Success)
+                {
+                    Debug.Log("✅ Progreso actualizado correctamente");
+                }
+                else
+                {
+                    Debug.LogError("❌ Error al actualizar el progreso: " + requestPost.error);
+                }
+            }
+            else
+            {
+                Debug.Log("ℹ️ La lección ya estaba completada. No se actualizó el progreso.");
+            }
         }
         else
         {
-            Debug.LogError("❌ Error al actualizar el progreso: " + request.error);
+            Debug.LogError("❌ Error al consultar progreso actual: " + requestGet.error);
         }
     }
+    
 
     void MostrarExplicacion(string explicacion, bool correcta)
     {

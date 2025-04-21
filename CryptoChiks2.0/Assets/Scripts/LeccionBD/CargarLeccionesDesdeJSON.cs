@@ -9,7 +9,7 @@ public class GestorLecciones : MonoBehaviour
     public VisualTreeAsset uxml;
     public StyleSheet uss;
 
-    private int idUsuario = Sesion.idUsuario;
+    private int idUsuario = SesionManager.instancia.idUsuario;
     private Dictionary<int, Button> botonesLecciones = new Dictionary<int, Button>();
     private List<int> leccionesCompletadas = new List<int>();
 

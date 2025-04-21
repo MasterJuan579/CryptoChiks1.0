@@ -61,7 +61,7 @@ public class IniciarNuevoProgreso : MonoBehaviour
 
             SesionManager.instancia.idCurso = 1;
             SesionManager.instancia.idLeccion = 1;
-            SceneManager.LoadScene("LeccionPreguntas");
+            SceneManager.LoadScene("Curso1");
         }
         else
         {
