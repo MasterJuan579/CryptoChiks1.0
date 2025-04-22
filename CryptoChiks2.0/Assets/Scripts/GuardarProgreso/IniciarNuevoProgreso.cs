@@ -37,38 +37,30 @@ public class IniciarNuevoProgreso : MonoBehaviour
 
         Debug.Log("🆔 id_usuario actual: " + SesionManager.instancia.idUsuario);
 
-        Progreso progreso = new Progreso
-        {
-            id_usuario = SesionManager.instancia.idUsuario,
-            id_curso = 1,
-            id_leccion = 1
-        };
+        // 1. Elimina el progreso del usuario en el backend
+        string url = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
+        string urlConParametros = url + "?id_usuario=" + SesionManager.instancia.idUsuario;
 
-        string jsonData = JsonUtility.ToJson(progreso);
-        Debug.Log("📤 JSON enviado: " + jsonData);
-
-        UnityWebRequest request = new UnityWebRequest("https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/", "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-
+        UnityWebRequest request = UnityWebRequest.Delete(urlConParametros);
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            Debug.Log("✅ Progreso guardado correctamente: " + request.downloadHandler.text);
+            Debug.Log("✅ Progreso anterior eliminado.");
 
+            // 2. Reinicia sesión localmente
             SesionManager.instancia.idCurso = 1;
             SesionManager.instancia.idLeccion = 1;
+
+            // 3. Carga la escena inicial del curso
             SceneManager.LoadScene("Curso1");
         }
         else
         {
-            Debug.LogError("❌ Error al guardar nuevo juego: " + request.responseCode);
-            Debug.LogError("➡️ Contenido del error: " + request.downloadHandler.text);
+            Debug.LogError("❌ Error al eliminar el progreso anterior: " + request.error);
         }
     }
+
 
     [System.Serializable]
     public class Progreso

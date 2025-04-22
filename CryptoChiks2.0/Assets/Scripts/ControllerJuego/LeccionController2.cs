@@ -88,7 +88,7 @@ public class LeccionController2 : MonoBehaviour
 
         botonRecompensa.clicked += () =>
         {
-            SceneManager.LoadScene("Seleccion_Leccion");
+            SceneManager.LoadScene("Curso1");
         };
 
 
@@ -439,7 +439,7 @@ public class LeccionController2 : MonoBehaviour
 
     private IEnumerator ActualizarProgreso()
     {
-        string urlGet = "https://tuprogresoapi-get.lambda-url.us-east-1.on.aws/";
+        string urlGet = "https://oewpzv2scmv3ot75p4c7t66gem0tyywb.lambda-url.us-east-1.on.aws/";
         UnityWebRequest requestGet = UnityWebRequest.Get(urlGet + "?id_usuario=" + SesionManager.instancia.idUsuario + "&id_curso=" + SesionManager.instancia.idCurso);
 
         yield return requestGet.SendWebRequest();

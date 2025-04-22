@@ -28,7 +28,7 @@ public class ContinuarProgreso : MonoBehaviour
 
     private IEnumerator ObtenerProgresoYRedirigir()
     {
-        string url = "https://tuprogresoapi-get.lambda-url.us-east-1.on.aws/";
+        string url = "https://jsfiah3rt6eg5qir2oulfm46te0pvmkc.lambda-url.us-east-1.on.aws/";
         UnityWebRequest request = UnityWebRequest.Get(url + "?id_usuario=" + SesionManager.instancia.idUsuario);
 
         yield return request.SendWebRequest();
