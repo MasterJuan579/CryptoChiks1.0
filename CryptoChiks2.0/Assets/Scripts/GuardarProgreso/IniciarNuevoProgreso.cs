@@ -38,7 +38,7 @@ public class IniciarNuevoProgreso : MonoBehaviour
         Debug.Log("🆔 id_usuario actual: " + SesionManager.instancia.idUsuario);
 
         // 1. Elimina el progreso del usuario en el backend
-        string url = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
+        string url = "https://izybsp2h4gnvlbkol3atx4br5y0debju.lambda-url.us-east-1.on.aws/";
         string urlConParametros = url + "?id_usuario=" + SesionManager.instancia.idUsuario;
 
         UnityWebRequest request = UnityWebRequest.Delete(urlConParametros);
