@@ -25,7 +25,7 @@ public class login : MonoBehaviour
     public struct RespuestaServidor
     {
         public string mensaje;
-        public int idUsuario;
+        public int idusuario;
         public int id_sesion;
     }
 
@@ -70,10 +70,10 @@ public class login : MonoBehaviour
 
                 if (respuestaServidor.mensaje == "Login exitoso")
                 {
-                    Sesion.idUsuario = respuestaServidor.idUsuario;
-                    Sesion.id_sesion = respuestaServidor.id_sesion;
+                    SesionManager.instancia.idUsuario = respuestaServidor.idusuario;
+                    SesionManager.instancia.id_sesion = respuestaServidor.id_sesion;
 
-                    Debug.Log("Login exitoso. ID Usuario: " + Sesion.idUsuario + ", ID Sesión: " + Sesion.id_sesion);
+                    Debug.Log("Login exitoso. ID Usuario: " + SesionManager.instancia.idUsuario + ", ID Sesión: " + SesionManager.instancia.id_sesion);
                     loginExitoso = true;
                 }
                 else

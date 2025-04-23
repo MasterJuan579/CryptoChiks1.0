@@ -26,7 +26,7 @@ public class Salida: MonoBehaviour
 
     private void EnviarDatosJSON_Salida()
     {
-        if (Sesion.id_sesion == -1)
+        if (SesionManager.instancia.id_sesion == -1)
         {
             Debug.LogError("No hay usuario autenticado");
             return;
@@ -41,7 +41,7 @@ public class Salida: MonoBehaviour
         RespuestaServidor respuestaServidor = new RespuestaServidor
         {
             mensaje = "Usuario Encontrado",
-            id_sesion = Sesion.id_sesion
+            id_sesion = SesionManager.instancia.id_sesion
         };
 
         string datosJSONsalida = JsonUtility.ToJson(respuestaServidor);
