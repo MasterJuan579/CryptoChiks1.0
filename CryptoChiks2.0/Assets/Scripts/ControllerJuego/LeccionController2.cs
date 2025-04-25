@@ -88,7 +88,7 @@ public class LeccionController2 : MonoBehaviour
 
         botonRecompensa.clicked += () =>
         {
-            SceneManager.LoadScene("Curso1");
+            StartCoroutine(FinalizarLeccionYVolver());
         };
 
 
@@ -102,6 +102,17 @@ public class LeccionController2 : MonoBehaviour
         Debug.Log("CargarPreguntas iniciando");
         StartCoroutine(CargarPreguntas());
         Debug.Log("Todo bien se supone");
+    }
+
+    private IEnumerator FinalizarLeccionYVolver()
+    {
+        // Asegura que ya se actualizó el progreso
+        yield return StartCoroutine(ActualizarProgreso());
+
+        // Da un pequeño retraso extra para asegurar sincronización
+        yield return new WaitForSeconds(0.2f);
+
+        SceneManager.LoadScene("Curso1", LoadSceneMode.Single);
     }
 
     private IEnumerator CargarMonedas()
@@ -442,19 +453,22 @@ public class LeccionController2 : MonoBehaviour
         string urlGet = "https://oewpzv2scmv3ot75p4c7t66gem0tyywb.lambda-url.us-east-1.on.aws/";
         UnityWebRequest requestGet = UnityWebRequest.Get(urlGet + "?id_usuario=" + SesionManager.instancia.idUsuario + "&id_curso=" + SesionManager.instancia.idCurso);
 
+        Debug.Log("🔄 Consultando progreso actual...");
         yield return requestGet.SendWebRequest();
 
         if (requestGet.result == UnityWebRequest.Result.Success)
         {
+            Debug.Log("📥 Progreso actual recibido: " + requestGet.downloadHandler.text);
             Progreso progresoActual = JsonUtility.FromJson<Progreso>(requestGet.downloadHandler.text);
 
             int leccionActual = SesionManager.instancia.idLeccion;
+            Debug.Log($"ℹ️ Lección actual: {leccionActual}, Última guardada: {progresoActual.id_leccion}");
 
             if (leccionActual > progresoActual.id_leccion)
             {
-                // Solo actualizamos si la lección que acabas de terminar es mayor a la registrada
-                string urlPost = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
+                Debug.Log("✅ Lección más avanzada, se actualizará el progreso.");
 
+                string urlPost = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
                 Progreso nuevoProgreso = new Progreso
                 {
                     id_usuario = SesionManager.instancia.idUsuario,
@@ -463,6 +477,7 @@ public class LeccionController2 : MonoBehaviour
                 };
 
                 string json = JsonUtility.ToJson(nuevoProgreso);
+                Debug.Log("📤 JSON de nuevo progreso: " + json);
 
                 UnityWebRequest requestPost = new UnityWebRequest(urlPost, "POST");
                 byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
@@ -474,7 +489,7 @@ public class LeccionController2 : MonoBehaviour
 
                 if (requestPost.result == UnityWebRequest.Result.Success)
                 {
-                    Debug.Log("✅ Progreso actualizado correctamente");
+                    Debug.Log("✅ Progreso actualizado correctamente.");
                 }
                 else
                 {
@@ -483,7 +498,7 @@ public class LeccionController2 : MonoBehaviour
             }
             else
             {
-                Debug.Log("ℹ️ La lección ya estaba completada. No se actualizó el progreso.");
+                Debug.Log("🔒 La lección ya estaba registrada o no es mayor. No se actualiza.");
             }
         }
         else
@@ -491,6 +506,7 @@ public class LeccionController2 : MonoBehaviour
             Debug.LogError("❌ Error al consultar progreso actual: " + requestGet.error);
         }
     }
+
     
 
     void MostrarExplicacion(string explicacion, bool correcta)

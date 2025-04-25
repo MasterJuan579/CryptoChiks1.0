@@ -48,6 +48,9 @@ public class IniciarNuevoProgreso : MonoBehaviour
         {
             Debug.Log("✅ Progreso anterior eliminado.");
 
+            yield return StartCoroutine(ReiniciarVidas());
+            yield return StartCoroutine(ReiniciarMonedas());
+
             // 2. Reinicia sesión localmente
             SesionManager.instancia.idCurso = 1;
             SesionManager.instancia.idLeccion = 1;
@@ -60,6 +63,64 @@ public class IniciarNuevoProgreso : MonoBehaviour
             Debug.LogError("❌ Error al eliminar el progreso anterior: " + request.error);
         }
     }
+    private IEnumerator ReiniciarVidas()
+    {
+        string url = "https://jrb4f5sbenk5tshj46rteydxsi0oiptr.lambda-url.us-east-1.on.aws/"; // reemplaza con la URL real
+
+        Vidas nueva = new Vidas
+        {
+            id_usuario = SesionManager.instancia.idUsuario,
+            vidas = 3
+        };
+
+        string json = JsonUtility.ToJson(nueva);
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("❌ Error al reiniciar vidas: " + request.error);
+        }
+        else
+        {
+            Debug.Log("❤️ Vidas reiniciadas correctamente.");
+        }
+    }
+
+    private IEnumerator ReiniciarMonedas()
+    {
+        string url = "https://vwrwqtaio3cdyddbmi5vtesmqi0mxvwj.lambda-url.us-east-1.on.aws/"; // reemplaza con la URL real
+
+        Monedas nueva = new Monedas
+        {
+            id_usuario = SesionManager.instancia.idUsuario,
+            monedas = 100
+        };
+
+        string json = JsonUtility.ToJson(nueva);
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result != UnityWebRequest.Result.Success)
+        {
+            Debug.LogError("❌ Error al reiniciar monedas: " + request.error);
+        }
+        else
+        {
+            Debug.Log("💰 Monedas reiniciadas correctamente.");
+        }
+    }
+
 
 
     [System.Serializable]
@@ -69,4 +130,20 @@ public class IniciarNuevoProgreso : MonoBehaviour
         public int id_curso;
         public int id_leccion;
     }
+
+    [System.Serializable]
+    public class Vidas
+    {
+        public int id_usuario;
+        public int vidas;
+    }
+
+    
+    [System.Serializable]
+    public class Monedas
+    {
+        public int id_usuario;
+        public int monedas;
+    }
+
 }
