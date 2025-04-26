@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      AroNeon_0: -70784499589776379
+      AroNeon_1: 6697037378303937161
+      AroNeon_2: 210713153237621598
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

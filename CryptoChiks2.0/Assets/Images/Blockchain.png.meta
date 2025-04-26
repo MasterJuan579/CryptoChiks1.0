@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Blockchain_0: 2998972163137697080
+      Blockchain_1: 1759620424088509646
+      Blockchain_2: -5092754842207791808
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
