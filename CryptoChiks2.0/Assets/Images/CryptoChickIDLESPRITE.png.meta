@@ -447,7 +447,20 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CryptoChickIDLESPRITE_0: 984388289121060408
+      CryptoChickIDLESPRITE_1: -3313290701473289466
+      CryptoChickIDLESPRITE_10: -1507593810075355331
+      CryptoChickIDLESPRITE_11: -3026905281156973082
+      CryptoChickIDLESPRITE_12: -3881101492549764871
+      CryptoChickIDLESPRITE_2: 5947893238263236009
+      CryptoChickIDLESPRITE_3: -869610318630249833
+      CryptoChickIDLESPRITE_4: -453974825432207022
+      CryptoChickIDLESPRITE_5: 3146949972552754560
+      CryptoChickIDLESPRITE_6: 9104300716393504567
+      CryptoChickIDLESPRITE_7: -6896930201253994016
+      CryptoChickIDLESPRITE_8: -8206203873646349307
+      CryptoChickIDLESPRITE_9: -5270730647091094409
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
