@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/Scripts/pregunta1/Preguntas.uss?fileID=7433441132597879392&amp;guid=90745b87308264b498bdb798b26e54cf&amp;type=3#Preguntas" />
+    <Style src="project://database/Assets/UI%20Toolkit/Preguntas.uss?fileID=7433441132597879392&amp;guid=90745b87308264b498bdb798b26e54cf&amp;type=3#Preguntas" />
     <ui:VisualElement name="contenedor-principal" style="flex-direction: column; align-items: center; padding: 20px; gap: 20px; background-color: rgb(18, 20, 21); -unity-text-outline-width: 0;">
         <ui:Label name="PreguntaTexto" text="Aquí va la pregunta" parse-escape-sequences="true" style="unity-font-size: 18px; font-weight: bold; text-align: center; width: 878px; position: relative; font-size: 22px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/PressStart2P-Regular.ttf?fileID=12800000&amp;guid=a13ed9975c4ed8f4bb01aa7e78036365&amp;type=3#PressStart2P-Regular&quot;); top: 260px; height: 96px; -unity-text-align: upper-center; white-space: normal; -unity-text-outline-width: 0;" />
         <ui:Button name="Opcion1" text="Opción 1" style="width: 30%; height: 10%; font-size: 18px; top: 280px; -unity-font-style: bold; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/Marcellus-Regular.ttf?fileID=12800000&amp;guid=6d94140be968a6d499efa59ccc2b961a&amp;type=3#Marcellus-Regular&quot;); -unity-text-outline-width: 0;" />
@@ -34,5 +34,14 @@
             </ui:VisualElement>
             <ui:Button text="Continue" name="BotonRecompensa" style="width: 248px; -unity-font-definition: url(&quot;project://database/Assets/TextMesh%20Pro/Fonts/PressStart2P-Regular.ttf?fileID=12800000&amp;guid=a13ed9975c4ed8f4bb01aa7e78036365&amp;type=3#PressStart2P-Regular&quot;); background-color: rgb(255, 204, 0); color: rgb(12, 12, 12); border-left-color: rgba(28, 53, 94, 0); border-right-color: rgba(28, 53, 94, 0); border-top-color: rgba(28, 53, 94, 0); border-bottom-color: rgba(28, 53, 94, 0);" />
         </ui:VisualElement>
+        <ui:VisualElement name="PanelPausa" style="flex-direction: column; align-items: center; gap: 10px; top: 300px; width: 600px; height: 580px; display: none; background-color: rgb(40, 40, 40); border-radius: 15px; padding: 20px; position: absolute; left: 962px; translate: -50% -50%;">
+            <ui:Label text="Menú de Pausa" style="font-size: 24px; color: white; margin-bottom: 10px;" />
+            <ui:Button name="BotonSalirMenu" text="Salir al Menú Principal" style="width: 250px; height: 50px; font-size: 16px;" />
+            <ui:Label text="Volumen" style="font-size: 16px; color: white; margin-top: 10px; height: 0; width: 0;" />
+            <ui:Slider name="SliderVolumen" low-value="0" high-value="1" value="1" style="width: 0; height: 0; background-image: none;" />
+            <ui:Button name="BotonTienda" text="Ir a Tienda 🛒" style="width: 250px; height: 50px; font-size: 16px;" />
+            <ui:Button name="BotonCerrarPausa" text="Cerrar" style="width: 250px; height: 50px; font-size: 16px;" />
+        </ui:VisualElement>
+        <ui:Button name="BotonMenuPausa" text="⏸ PAUSA" style="position: absolute; top: 35px; left: 1749px; font-size: 18px; background-color: rgb(218, 46, 46); color: rgb(0, 0, 0); width: 229px; height: 87px; -unity-font-style: bold; -unity-text-outline-color: rgba(226, 0, 0, 0);" />
     </ui:VisualElement>
 </ui:UXML>

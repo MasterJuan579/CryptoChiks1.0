@@ -32,7 +32,12 @@ public class LeccionController2 : MonoBehaviour
     private Label textoRecompensa;
     private Button botonRecompensa;
 
-
+     private VisualElement panelPausa;
+    private Button botonMenuPausa;
+    private Button botonSalirMenu;
+    private Button botonTienda;
+    private Button botonCerrarPausa;
+    private Slider sliderVolumen;
 
 
     void Start()
@@ -57,6 +62,59 @@ public class LeccionController2 : MonoBehaviour
 
         textoVidas = root.Q<Label>("TextoVidas");
         textoMonedas = root.Q<Label>("Monedas");
+
+        // Panel de Pausa y sus componentes
+        panelPausa = root.Q<VisualElement>("PanelPausa");
+        botonMenuPausa = root.Q<Button>("BotonMenuPausa");
+        botonSalirMenu = root.Q<Button>("BotonSalirMenu");
+        botonTienda = root.Q<Button>("BotonTienda");
+        botonCerrarPausa = root.Q<Button>("BotonCerrarPausa");
+        sliderVolumen = root.Q<Slider>("SliderVolumen");
+
+        // Restaurar volumen desde PlayerPrefs
+        float volumenGuardado = PlayerPrefs.GetFloat("volumenJuego", 1f);
+        AudioListener.volume = volumenGuardado;
+        sliderVolumen.value = volumenGuardado;
+
+// Mostrar panel de pausa
+        botonMenuPausa.clicked += () =>
+        {
+            panelPausa.style.display = DisplayStyle.Flex;
+            Time.timeScale = 0f;
+            HabilitarBotonesPregunta(false); 
+        };
+
+        // Cerrar menú de pausa
+        botonCerrarPausa.clicked += () =>
+        {
+            panelPausa.style.display = DisplayStyle.None;
+            Time.timeScale = 1f;
+            HabilitarBotonesPregunta(true); 
+        };
+
+// Volver al menú principal
+        botonSalirMenu.clicked += () =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("HomePage"); // Asegúrate que esta escena existe
+        };
+
+        // Ir a la tienda
+        botonTienda.clicked += () =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Tienda"); // Asegúrate que esta escena está en Build Settings
+        };
+
+        // Cambiar volumen con el slider
+        sliderVolumen.RegisterValueChangedCallback(evt =>
+        {
+            AudioListener.volume = evt.newValue;
+            PlayerPrefs.SetFloat("volumenJuego", evt.newValue); // Guardar volumen
+            PlayerPrefs.Save();
+            Debug.Log("🎚 Volumen actualizado a: " + evt.newValue);
+        });
+
 
         // Acción de repetir lección
         botonReiniciar.clicked += () =>
@@ -181,6 +239,14 @@ public class LeccionController2 : MonoBehaviour
     {
         textoVidas.text = $"x{vidas}";
     }
+    void HabilitarBotonesPregunta(bool habilitar)
+    {
+    foreach (var boton in botones)
+    {
+        boton.SetEnabled(habilitar);
+    }
+    }
+
 
     private IEnumerator GuardarVidas()
     {
