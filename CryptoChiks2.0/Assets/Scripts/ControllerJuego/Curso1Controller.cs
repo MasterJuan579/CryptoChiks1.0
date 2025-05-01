@@ -46,12 +46,12 @@ public class Curso1Controller : MonoBehaviour
     }
 
     // 👉 Método separado para evitar múltiples lambdas anónimas
-    private void IrALeccion(int leccion)
+    private void IrAExplicacion(int leccion)
     {
         Debug.Log($"➡️ Cargando Lección {leccion}");
         SesionManager.instancia.idLeccion = leccion;
         SesionManager.instancia.idCurso = idCurso;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Leccion");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ExplicacionLeccion" + leccion);
     }
 
     private void ActualizarUI(int ultimaLeccionCompletada)
@@ -70,7 +70,7 @@ public class Curso1Controller : MonoBehaviour
             int leccion = i; // Necesario para capturar el índice
 
             // Limpia listeners previos antes de asignar uno nuevo (opcional pero recomendable si haces múltiples cargas)
-            boton.clicked -= () => IrALeccion(leccion); // ⚠️ Esto no funciona con lambdas directamente, así que preferimos asegurar que no se acumulen
+            boton.clicked -= () => IrAExplicacion(leccion); // ⚠️ Esto no funciona con lambdas directamente, así que preferimos asegurar que no se acumulen
 
             // Estilo visual y estado de los botones
             if (ultimaLeccionCompletada == 0 && i == 1)
@@ -101,7 +101,7 @@ public class Curso1Controller : MonoBehaviour
             // Solo asignamos listener si está habilitado
             if (boton.enabledSelf)
             {
-                boton.clicked += () => IrALeccion(leccion);
+                boton.clicked += () => IrAExplicacion(leccion);
             }
         }
     }
