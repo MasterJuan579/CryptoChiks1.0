@@ -41,5 +41,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscenasLeccion/Curso1-Lecciones/ExplicacionLeccion4.unity
     guid: 9a34022c976c1414ea9645fd906cd920
+  - enabled: 1
+    path: Assets/Scenes/Logros/Logros.unity
+    guid: 5002ea850768e8a4f9eb0d2fa67c27e3
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
