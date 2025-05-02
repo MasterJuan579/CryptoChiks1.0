@@ -36,6 +36,7 @@ public class Curso1Controller : MonoBehaviour
         botonSiguienteCurso.clicked += () => {SceneManager.LoadScene("Curso2");};
 
         Debug.Log("🟢 Curso1Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
+
         StartCoroutine(CargarProgresoYActualizarBotones());
     }
 
@@ -119,8 +120,6 @@ public class Curso1Controller : MonoBehaviour
             {
                 Debug.Log("🎉 Curso completado, actualizando estado...");
                 botonSiguienteCurso.style.display = DisplayStyle.Flex;
-                StartCoroutine(ActualizarCursoCompletado());
-
             }
 
         }
@@ -197,44 +196,6 @@ public class Curso1Controller : MonoBehaviour
                 boton.SetEnabled(habilitar);
         }
     }
-
-    private IEnumerator ActualizarCursoCompletado()
-    {
-        string url = "https://<tu_lambda_url_para_actualizar_curso>"; // cambia por tu endpoint
-
-        UsuarioCurso curso = new UsuarioCurso
-        {
-            id_usuario = SesionManager.instancia.idUsuario,
-            id_curso = idCurso,
-            completado = true
-        };
-
-        string json = JsonUtility.ToJson(curso);
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("✅ Curso marcado como completado correctamente.");
-        }
-        else
-        {
-            Debug.LogError("❌ Error al actualizar curso completado: " + request.error);
-        }
-    }
-
-[System.Serializable]
-public class UsuarioCurso
-{
-    public int id_usuario;
-    public int id_curso;
-    public bool completado;
-}
 
 
     [System.Serializable]

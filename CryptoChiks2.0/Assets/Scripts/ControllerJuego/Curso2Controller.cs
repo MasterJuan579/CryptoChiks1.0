@@ -6,17 +6,35 @@ using UnityEngine.SceneManagement;
 
 public class Curso2Controller : MonoBehaviour
 {
-    private int totalLecciones = 4; // Número de lecciones de este curso
-    private int idCurso = 2;        // ID del curso que representa esta escena
+    private int totalLecciones = 8;
+    private int idCurso = 2;
+
+    // Menú de pausa
+    private VisualElement panelPausa;
+    private Button botonMenuPausa;
+    private Button Logros;
+    private Button botonSalirMenu;
+    private Button botonTienda;
+    private Button botonCerrarPausa;
+    private Slider sliderVolumen;
     private Button botonSiguienteCurso;
 
     void Start()
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
-        botonSiguienteCurso = root.Q<Button>("SiguienteCurso");
-        botonSiguienteCurso.clicked += () => {SceneManager.LoadScene("Curso3");};
+        if (SesionManager.instancia == null)
+        {
+            Debug.LogError("❌ SesionManager no está inicializado.");
+            return;
+        }
 
-        Debug.Log("🟢 Curso1Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
+        var root = GetComponent<UIDocument>().rootVisualElement;
+
+        // ⚠️ Corrige aquí para que pase a Curso3
+        botonSiguienteCurso = root.Q<Button>("SiguienteCurso");
+        botonSiguienteCurso.clicked += () => { SceneManager.LoadScene("Curso3"); };
+
+        Debug.Log("🟢 Curso2Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
+
         StartCoroutine(CargarProgresoYActualizarBotones());
     }
 
@@ -26,22 +44,19 @@ public class Curso2Controller : MonoBehaviour
         UnityWebRequest request = UnityWebRequest.Get(url + "?id_usuario=" + SesionManager.instancia.idUsuario + "&id_curso=" + idCurso);
 
         Debug.Log("🔄 Consultando progreso actual...");
-
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
             ProgresoCurso progreso = JsonUtility.FromJson<ProgresoCurso>(request.downloadHandler.text);
             int leccionCompletada = progreso.id_leccion;
-            if (progreso.id_leccion <= 0) {
+
+            if (leccionCompletada <= 0)
+            {
                 Debug.LogWarning("⚠️ El progreso recibido tiene una lección inválida.");
             }
 
-            Debug.Log("Despues de recibir. id_leccion = "+ progreso.id_leccion);
-
             Debug.Log($"📥 Progreso recibido: id_usuario={progreso.id_usuario}, id_curso={progreso.id_curso}, id_leccion={progreso.id_leccion}");
-            Debug.Log($"📊 Lección completada más alta: {leccionCompletada}");
-
             ActualizarUI(leccionCompletada);
         }
         else
@@ -50,13 +65,16 @@ public class Curso2Controller : MonoBehaviour
         }
     }
 
-    // 👉 Método separado para evitar múltiples lambdas anónimas
-    private void IrAExplicacion(int leccion)
+    // 🧠 Esta función ahora calcula correctamente el número global de la lección
+    private void IrAExplicacion(int leccionLocal)
     {
-        Debug.Log($"➡️ Cargando Lección {leccion}");
-        SesionManager.instancia.idLeccion = leccion;
+        int leccionGlobal = (idCurso - 1) * 4 + leccionLocal;
+        Debug.Log($"➡️ Cargando Lección Global {leccionGlobal} desde Curso {idCurso}");
+
+        SesionManager.instancia.idLeccion = leccionGlobal;
         SesionManager.instancia.idCurso = idCurso;
-        SceneManager.LoadScene("ExplicacionLeccion" + leccion);
+
+        SceneManager.LoadScene("ExplicacionLeccion" + leccionGlobal);
     }
 
     private void ActualizarUI(int ultimaLeccionCompletada)
@@ -72,92 +90,105 @@ public class Curso2Controller : MonoBehaviour
                 continue;
             }
 
-            int leccion = i; // Necesario para capturar el índice
+            int leccionLocal = i;
 
-            // Limpia listeners previos antes de asignar uno nuevo (opcional pero recomendable si haces múltiples cargas)
-            boton.clicked -= () => IrAExplicacion(leccion); // ⚠️ Esto no funciona con lambdas directamente, así que preferimos asegurar que no se acumulen
-
-            // Estilo visual y estado de los botones
             if (ultimaLeccionCompletada == 0 && i == 1)
             {
-                Debug.Log($"🔵 Lección {i} desbloqueada como primera.");
                 boton.style.backgroundColor = new StyleColor(Color.blue);
                 boton.SetEnabled(true);
             }
             else if (i <= ultimaLeccionCompletada)
             {
-                Debug.Log($"🟢 Lección {i} marcada como completada.");
                 boton.style.backgroundColor = new StyleColor(Color.green);
                 boton.SetEnabled(true);
             }
             else if (i == ultimaLeccionCompletada + 1)
             {
-                Debug.Log($"🔵 Lección {i} desbloqueada como siguiente disponible.");
                 boton.style.backgroundColor = new StyleColor(Color.blue);
                 boton.SetEnabled(true);
             }
             else
             {
-                Debug.Log($"⚫ Lección {i} bloqueada.");
                 boton.style.backgroundColor = new StyleColor(Color.gray);
                 boton.SetEnabled(false);
             }
 
-            // Solo asignamos listener si está habilitado
             if (boton.enabledSelf)
             {
-                boton.clicked += () => IrAExplicacion(leccion);
+                boton.clicked += () => IrAExplicacion(leccionLocal);
             }
 
             if (ultimaLeccionCompletada >= totalLecciones)
             {
-                Debug.Log("🎉 Curso completado, actualizando estado...");
+                Debug.Log("🎉 Curso completado, mostrando botón de siguiente curso...");
                 botonSiguienteCurso.style.display = DisplayStyle.Flex;
-                StartCoroutine(ActualizarCursoCompletado());
-
             }
-
         }
-    }
 
-    private IEnumerator ActualizarCursoCompletado()
-    {
-        string url = "https://<tu_lambda_url_para_actualizar_curso>"; // cambia por tu endpoint
+        // 🎮 MENÚ DE PAUSA
+        panelPausa = root.Q<VisualElement>("PanelPausa");
+        botonMenuPausa = root.Q<Button>("BotonMenuPausa");
+        botonSalirMenu = root.Q<Button>("BotonSalirMenu");
+        botonTienda = root.Q<Button>("BotonTienda");
+        botonCerrarPausa = root.Q<Button>("BotonCerrarPausa");
+        sliderVolumen = root.Q<Slider>("SliderVolumen");
+        Logros = root.Q<Button>("Logros");
 
-        UsuarioCurso curso = new UsuarioCurso
+        botonMenuPausa.clicked += () =>
         {
-            id_usuario = SesionManager.instancia.idUsuario,
-            id_curso = idCurso,
-            completado = true
+            panelPausa.style.display = DisplayStyle.Flex;
+            Time.timeScale = 0f;
+            HabilitarBotonesLeccion(false);
         };
 
-        string json = JsonUtility.ToJson(curso);
-        UnityWebRequest request = new UnityWebRequest(url, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json");
-
-        yield return request.SendWebRequest();
-
-        if (request.result == UnityWebRequest.Result.Success)
+        botonCerrarPausa.clicked += () =>
         {
-            Debug.Log("✅ Curso marcado como completado correctamente.");
-        }
-        else
+            panelPausa.style.display = DisplayStyle.None;
+            Time.timeScale = 1f;
+            HabilitarBotonesLeccion(true);
+        };
+
+        botonSalirMenu.clicked += () =>
         {
-            Debug.LogError("❌ Error al actualizar curso completado: " + request.error);
-        }
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("HomePage");
+        };
+
+        botonTienda.clicked += () =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Tienda");
+        };
+
+        Logros.clicked += () =>
+        {
+            Time.timeScale = 1f;
+            SceneManager.LoadScene("Logros");
+        };
+
+        float volumenGuardado = PlayerPrefs.GetFloat("volumenJuego", 1f);
+        AudioListener.volume = volumenGuardado;
+        sliderVolumen.value = volumenGuardado;
+
+        sliderVolumen.RegisterValueChangedCallback(evt =>
+        {
+            AudioListener.volume = evt.newValue;
+            PlayerPrefs.SetFloat("volumenJuego", evt.newValue);
+            PlayerPrefs.Save();
+            Debug.Log("🎚 Volumen actualizado a: " + evt.newValue);
+        });
     }
 
-[System.Serializable]
-public class UsuarioCurso
-{
-    public int id_usuario;
-    public int id_curso;
-    public bool completado;
-}
-
+    private void HabilitarBotonesLeccion(bool habilitar)
+    {
+        var root = GetComponent<UIDocument>().rootVisualElement;
+        for (int i = 1; i <= totalLecciones; i++)
+        {
+            Button boton = root.Q<Button>("Leccion" + i);
+            if (boton != null)
+                boton.SetEnabled(habilitar);
+        }
+    }
 
     [System.Serializable]
     public class ProgresoCurso
@@ -167,4 +198,3 @@ public class UsuarioCurso
         public int id_leccion;
     }
 }
-
