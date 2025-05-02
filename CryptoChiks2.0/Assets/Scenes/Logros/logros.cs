@@ -16,19 +16,16 @@ public class LogrosController : MonoBehaviour
         { "Logro2", new Color32(164, 156, 156, 255) },
         { "Logro3", new Color32(56, 56, 56, 255) },
         { "Logro4", new Color32(218, 215, 54, 255) }
+        // Agrega más si necesitas colores distintos por logro
     };
 
-    // Bienvenida
     private Button botonPregunta;
     private VisualElement panelMensaje;
     private Button botonCerrarMensaje;
-
-    // Felicitaciones
-    private Dictionary<int, VisualElement> panelesFelicitacion = new();
-    private Dictionary<int, Button> botonesCerrarFelicitacion = new();
-
-    // Regresar
     private Button botonRegreso;
+
+    private Dictionary<string, VisualElement> panelesFelicitacion = new();
+    private Dictionary<string, Button> botonesCerrarFelicitacion = new();
 
     void Start()
     {
@@ -40,7 +37,17 @@ public class LogrosController : MonoBehaviour
 
         root = GetComponent<UIDocument>().rootVisualElement;
 
-        // Inicializar bienvenida
+        // Botón de regreso
+        botonRegreso = root.Q<Button>("Botonregreos");
+        if (botonRegreso != null)
+        {
+            botonRegreso.clicked += () =>
+            {
+                SceneManager.LoadScene("HomePage");
+            };
+        }
+
+        // Panel de bienvenida
         botonPregunta = root.Q<Button>("pregunta");
         panelMensaje = root.Q<VisualElement>("PanelMensaje");
         botonCerrarMensaje = root.Q<Button>("CerrarMensaje");
@@ -58,40 +65,41 @@ public class LogrosController : MonoBehaviour
             };
         }
 
-        // Inicializar paneles de felicitación
-        for (int i = 1; i <= 4; i++)
+        // Inicializar paneles de felicitación para Logro1 - Logro12 y Extra1 - Extra3
+        for (int i = 1; i <= 12; i++)
         {
-            string panelName = $"PanelFelicitacion{i}";
-            string closeName = $"CerrarFelicitacion{i}";
-
-            var panel = root.Q<VisualElement>(panelName);
-            var cerrar = root.Q<Button>(closeName);
+            string panelId = $"PanelFelicitacion{i}";
+            string cerrarId = $"CerrarFelicitacion{i}";
+            VisualElement panel = root.Q<VisualElement>(panelId);
+            Button cerrar = root.Q<Button>(cerrarId);
 
             if (panel != null && cerrar != null)
             {
                 panel.style.display = DisplayStyle.None;
-                panelesFelicitacion[i] = panel;
-                botonesCerrarFelicitacion[i] = cerrar;
+                panelesFelicitacion[panelId] = panel;
+                botonesCerrarFelicitacion[panelId] = cerrar;
 
-                int index = i;
-                cerrar.clicked += () =>
-                {
-                    panelesFelicitacion[index].style.display = DisplayStyle.None;
-                };
+                cerrar.clicked += () => panel.style.display = DisplayStyle.None;
             }
         }
 
-        // Inicializar botón de regreso
-        botonRegreso = root.Q<Button>("Botonregreos");
-        if (botonRegreso != null)
+        for (int i = 1; i <= 3; i++)
         {
-            botonRegreso.clicked += () =>
+            string panelId = $"PanelFelicitacionextra{i}";
+            string cerrarId = $"CerrarFelicitacionextra{i}";
+            VisualElement panel = root.Q<VisualElement>(panelId);
+            Button cerrar = root.Q<Button>(cerrarId);
+
+            if (panel != null && cerrar != null)
             {
-                SceneManager.LoadScene("HomePage");
-            };
+                panel.style.display = DisplayStyle.None;
+                panelesFelicitacion[panelId] = panel;
+                botonesCerrarFelicitacion[panelId] = cerrar;
+
+                cerrar.clicked += () => panel.style.display = DisplayStyle.None;
+            }
         }
 
-        // Cargar progreso desde backend
         StartCoroutine(CargarProgresoYActualizarLogros());
     }
 
@@ -100,7 +108,7 @@ public class LogrosController : MonoBehaviour
         string url = "https://oewpzv2scmv3ot75p4c7t66gem0tyywb.lambda-url.us-east-1.on.aws/";
         UnityWebRequest request = UnityWebRequest.Get(url + "?id_usuario=" + SesionManager.instancia.idUsuario + "&id_curso=" + idCurso);
 
-        Debug.Log("🔄 Consultando progreso de logros...");
+        Debug.Log("🔄 Consultando progreso...");
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
@@ -108,7 +116,7 @@ public class LogrosController : MonoBehaviour
             ProgresoCurso progreso = JsonUtility.FromJson<ProgresoCurso>(request.downloadHandler.text);
             int leccionCompletada = progreso.id_leccion;
 
-            Debug.Log($"📥 Progreso recibido: lección {leccionCompletada}");
+            Debug.Log($"📥 Lección completada: {leccionCompletada}");
             ActualizarLogros(leccionCompletada);
         }
         else
@@ -119,33 +127,60 @@ public class LogrosController : MonoBehaviour
 
     private void ActualizarLogros(int leccionCompletada)
     {
-        for (int i = 1; i <= 4; i++)
+        // Mostrar logros normales
+        for (int i = 1; i <= 12; i++)
         {
             string nombreLogro = "Logro" + i;
-            Button botonLogro = root.Q<Button>(nombreLogro);
-            if (botonLogro == null)
-            {
-                Debug.LogWarning($"⚠️ Botón {nombreLogro} no encontrado.");
-                continue;
-            }
+            Button boton = root.Q<Button>(nombreLogro);
+            if (boton == null) continue;
 
             if (leccionCompletada >= i)
             {
-                botonLogro.style.display = DisplayStyle.Flex;
-                botonLogro.style.backgroundColor = new StyleColor(coloresOriginales[nombreLogro]);
+                boton.style.display = DisplayStyle.Flex;
+                if (coloresOriginales.ContainsKey(nombreLogro))
+                    boton.style.backgroundColor = new StyleColor(coloresOriginales[nombreLogro]);
 
                 int logroIndex = i;
-                botonLogro.clicked += () =>
+                boton.clicked += () =>
                 {
-                    if (panelesFelicitacion.ContainsKey(logroIndex))
-                    {
-                        panelesFelicitacion[logroIndex].style.display = DisplayStyle.Flex;
-                    }
+                    string panelId = $"PanelFelicitacion{logroIndex}";
+                    if (panelesFelicitacion.ContainsKey(panelId))
+                        panelesFelicitacion[panelId].style.display = DisplayStyle.Flex;
                 };
             }
             else
             {
-                botonLogro.style.display = DisplayStyle.None;
+                boton.style.display = DisplayStyle.None;
+            }
+        }
+
+        // Mostrar logros extra
+        Dictionary<string, int> extrasPorCurso = new()
+        {
+            { "Extra1", 4 },
+            { "Extra2", 8 },
+            { "Extra3", 12 }
+        };
+
+        foreach (var extra in extrasPorCurso)
+        {
+            Button botonExtra = root.Q<Button>(extra.Key);
+            if (botonExtra == null) continue;
+
+            if (leccionCompletada >= extra.Value)
+            {
+                botonExtra.style.display = DisplayStyle.Flex;
+
+                string panelId = $"PanelFelicitacion{extra.Key.ToLower()}";
+                botonExtra.clicked += () =>
+                {
+                    if (panelesFelicitacion.ContainsKey(panelId))
+                        panelesFelicitacion[panelId].style.display = DisplayStyle.Flex;
+                };
+            }
+            else
+            {
+                botonExtra.style.display = DisplayStyle.None;
             }
         }
     }
