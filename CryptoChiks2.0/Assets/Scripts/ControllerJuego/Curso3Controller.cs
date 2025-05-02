@@ -17,7 +17,7 @@ public class Curso3Controller : MonoBehaviour
     private Button botonTienda;
     private Button botonCerrarPausa;
     private Slider sliderVolumen;
-    private Button botonSiguienteCurso;
+    private Button botonAnteriorCurso;
 
     void Start()
     {
@@ -28,8 +28,9 @@ public class Curso3Controller : MonoBehaviour
         }
 
         var root = GetComponent<UIDocument>().rootVisualElement;
-        botonSiguienteCurso = root.Q<Button>("SiguienteCurso");
-        botonSiguienteCurso.clicked += () => { SceneManager.LoadScene("Curso4"); }; // Si existe
+        botonAnteriorCurso = root.Q<Button>("AnteriorCurso");
+        botonAnteriorCurso.clicked += () =>{SceneManager.LoadScene("Curso2");};
+
 
         Debug.Log("🟢 Curso3Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
         StartCoroutine(CargarProgresoYActualizarBotones());
@@ -107,12 +108,6 @@ public class Curso3Controller : MonoBehaviour
             if (boton.enabledSelf)
             {
                 boton.clicked += () => IrAExplicacion(leccionRelativa);
-            }
-
-            if (ultimaLeccionCompletada >= totalLecciones)
-            {
-                Debug.Log("🎉 Curso completado, mostrando botón siguiente curso...");
-                botonSiguienteCurso.style.display = DisplayStyle.Flex;
             }
         }
 

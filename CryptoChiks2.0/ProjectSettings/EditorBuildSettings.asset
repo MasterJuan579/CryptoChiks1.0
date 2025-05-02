@@ -56,5 +56,26 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscenasLeccion/Curso1-Lecciones/ExplicacionLeccion2.unity
     guid: ec2efb53659474645965181620e72070
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso2-Lecciones/ExplicacionLeccion7.unity
+    guid: f220aaf68c496004e81f42f288fbdcdd
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso2-Lecciones/ExplicacionLeccion8.unity
+    guid: 2cb2e5e2520da0542868a4c6107fb0dc
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso3-Lecciones/Curso3.unity
+    guid: 39827449537d7c74b9ac3616a4fc221a
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso3-Lecciones/ExplicacionLeccion9.unity
+    guid: 4fde4b1832b923c4185a62aa43392a2d
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso3-Lecciones/ExplicacionLeccion10.unity
+    guid: cdd7dc5a394d5584ba594e0eac52fc95
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso3-Lecciones/ExplicacionLeccion11.unity
+    guid: 47917c6db20a6024185ce1dd35ede117
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso3-Lecciones/ExplicacionLeccion12.unity
+    guid: 03265a6ae415d3443800f631ba438a98
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
