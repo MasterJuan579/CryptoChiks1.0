@@ -6,10 +6,10 @@ using UnityEngine.Networking;
 using System.ComponentModel.Design.Serialization;
 using UnityEngine.SceneManagement;
 
-public class Curso1Controller : MonoBehaviour
+public class Curso2Controller : MonoBehaviour
 {
     private int totalLecciones = 4; // Número de lecciones de este curso
-    private int idCurso = 1;        // ID del curso que representa esta escena
+    private int idCurso = 2;        // ID del curso que representa esta escena
     private Button botonSiguienteCurso;
 
     void Start()
@@ -58,7 +58,7 @@ public class Curso1Controller : MonoBehaviour
         Debug.Log($"➡️ Cargando Lección {leccion}");
         SesionManager.instancia.idLeccion = leccion;
         SesionManager.instancia.idCurso = idCurso;
-        SceneManager.LoadScene("ExplicacionLeccion" + leccion);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("ExplicacionLeccion" + leccion);
     }
 
     private void ActualizarUI(int ultimaLeccionCompletada)
@@ -169,3 +169,4 @@ public class UsuarioCurso
         public int id_leccion;
     }
 }
+

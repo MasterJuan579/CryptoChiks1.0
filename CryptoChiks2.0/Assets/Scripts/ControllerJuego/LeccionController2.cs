@@ -169,8 +169,8 @@ public class LeccionController2 : MonoBehaviour
 
         // Da un pequeño retraso extra para asegurar sincronización
         yield return new WaitForSeconds(0.2f);
-
-        SceneManager.LoadScene("Curso1", LoadSceneMode.Single);
+        int idCurso = SesionManager.instancia.idCurso;
+        SceneManager.LoadScene("Curso" + idCurso, LoadSceneMode.Single);
     }
 
     private IEnumerator CargarMonedas()
