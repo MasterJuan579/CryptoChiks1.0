@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class LogrosController : MonoBehaviour
 {
@@ -25,6 +26,9 @@ public class LogrosController : MonoBehaviour
     // Felicitaciones
     private Dictionary<int, VisualElement> panelesFelicitacion = new();
     private Dictionary<int, Button> botonesCerrarFelicitacion = new();
+
+    // Regresar
+    private Button botonRegreso;
 
     void Start()
     {
@@ -75,6 +79,16 @@ public class LogrosController : MonoBehaviour
                     panelesFelicitacion[index].style.display = DisplayStyle.None;
                 };
             }
+        }
+
+        // Inicializar botón de regreso
+        botonRegreso = root.Q<Button>("Botonregreos");
+        if (botonRegreso != null)
+        {
+            botonRegreso.clicked += () =>
+            {
+                SceneManager.LoadScene("HomePage");
+            };
         }
 
         // Cargar progreso desde backend
