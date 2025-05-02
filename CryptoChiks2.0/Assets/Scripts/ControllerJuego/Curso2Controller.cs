@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Curso2Controller : MonoBehaviour
 {
-    private int totalLecciones = 8; // Número de lecciones de este curso
+    private int totalLecciones = 4; // Número de lecciones de este curso
     private int idCurso = 2;        // ID del curso que representa esta escena
     private Button botonSiguienteCurso;
 
@@ -63,7 +63,7 @@ public class Curso2Controller : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
-        for (int i = 5; i <= totalLecciones; i++)
+        for (int i = 1; i <= totalLecciones; i++)
         {
             Button boton = root.Q<Button>("Leccion" + i);
             if (boton == null)
