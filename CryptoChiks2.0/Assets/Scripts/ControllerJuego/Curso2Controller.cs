@@ -1,14 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Networking;
-using System.ComponentModel.Design.Serialization;
 using UnityEngine.SceneManagement;
 
 public class Curso2Controller : MonoBehaviour
 {
-    private int totalLecciones = 4; // Número de lecciones de este curso
+    private int totalLecciones = 8; // Número de lecciones de este curso
     private int idCurso = 2;        // ID del curso que representa esta escena
     private Button botonSiguienteCurso;
 
@@ -16,7 +14,7 @@ public class Curso2Controller : MonoBehaviour
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
         botonSiguienteCurso = root.Q<Button>("SiguienteCurso");
-        botonSiguienteCurso.clicked += () => {SceneManager.LoadScene("Curso2");};
+        botonSiguienteCurso.clicked += () => {SceneManager.LoadScene("Curso3");};
 
         Debug.Log("🟢 Curso1Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
         StartCoroutine(CargarProgresoYActualizarBotones());
@@ -58,14 +56,14 @@ public class Curso2Controller : MonoBehaviour
         Debug.Log($"➡️ Cargando Lección {leccion}");
         SesionManager.instancia.idLeccion = leccion;
         SesionManager.instancia.idCurso = idCurso;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("ExplicacionLeccion" + leccion);
+        SceneManager.LoadScene("ExplicacionLeccion" + leccion);
     }
 
     private void ActualizarUI(int ultimaLeccionCompletada)
     {
         var root = GetComponent<UIDocument>().rootVisualElement;
 
-        for (int i = 1; i <= totalLecciones; i++)
+        for (int i = 5; i <= totalLecciones; i++)
         {
             Button boton = root.Q<Button>("Leccion" + i);
             if (boton == null)
