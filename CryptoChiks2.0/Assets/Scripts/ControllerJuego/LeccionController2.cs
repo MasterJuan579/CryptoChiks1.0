@@ -218,11 +218,42 @@ public class LeccionController2 : MonoBehaviour
             Debug.Log("🎉 Lección final del curso alcanzada. Actualizando...");
 
             yield return StartCoroutine(ActualizarCursoCompletado());
-            
+
             if (SesionManager.instancia.idCurso < 3) // suponiendo que hay 3 cursos
             {
                 SesionManager.instancia.idCurso++;
+                
+                SesionManager.instancia.idLeccion = (SesionManager.instancia.idCurso - 1) * 4 + 1;
+                Debug.Log("✅ Progreso inicializado para el nuevo curso.");
             }
+
+            // Inicializar progreso del nuevo curso
+            Progreso nuevoProgreso = new Progreso
+            {
+                id_usuario = SesionManager.instancia.idUsuario,
+                id_curso = SesionManager.instancia.idCurso,
+                id_leccion = ObtenerUltimaLeccionDelCurso(SesionManager.instancia.idCurso - 1) // desbloquea la primera lección del nuevo curso
+            };
+
+            string urlProgreso = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
+            string jsonNuevo = JsonUtility.ToJson(nuevoProgreso);
+            UnityWebRequest requestNuevo = new UnityWebRequest(urlProgreso, "POST");
+            byte[] body = System.Text.Encoding.UTF8.GetBytes(jsonNuevo);
+            requestNuevo.uploadHandler = new UploadHandlerRaw(body);
+            requestNuevo.downloadHandler = new DownloadHandlerBuffer();
+            requestNuevo.SetRequestHeader("Content-Type", "application/json");
+
+            yield return requestNuevo.SendWebRequest();
+
+            if (requestNuevo.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("✅ Progreso inicializado para el nuevo curso.");
+            }
+            else
+            {
+                Debug.LogError("❌ Error al inicializar progreso del nuevo curso: " + requestNuevo.error);
+            }
+
         }
 
         SceneManager.LoadScene("Curso" + SesionManager.instancia.idCurso, LoadSceneMode.Single);
@@ -714,5 +745,4 @@ public class LeccionController2 : MonoBehaviour
         public int id_curso;
         public bool completado;
     }
-
 }

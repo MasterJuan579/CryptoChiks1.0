@@ -1,14 +1,14 @@
-// Curso2Controller CORREGIDO
+// Curso3Controller basado en Curso2Controller
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
-public class Curso2Controller : MonoBehaviour
+public class Curso3Controller : MonoBehaviour
 {
     private int totalLecciones = 4;
-    private int idCurso = 2;
+    private int idCurso = 3;
 
     private VisualElement panelPausa;
     private Button botonMenuPausa;
@@ -29,9 +29,9 @@ public class Curso2Controller : MonoBehaviour
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         botonSiguienteCurso = root.Q<Button>("SiguienteCurso");
-        botonSiguienteCurso.clicked += () => { SceneManager.LoadScene("Curso3"); };
+        botonSiguienteCurso.clicked += () => { SceneManager.LoadScene("Curso4"); }; // Si existe
 
-        Debug.Log("🟢 Curso2Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
+        Debug.Log("🟢 Curso3Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);
         StartCoroutine(CargarProgresoYActualizarBotones());
     }
 
@@ -188,3 +188,4 @@ public class Curso2Controller : MonoBehaviour
         public int id_leccion;
     }
 }
+
