@@ -76,7 +76,7 @@ public class LeccionController2 : MonoBehaviour
         AudioListener.volume = volumenGuardado;
         sliderVolumen.value = volumenGuardado;
 
-// Mostrar panel de pausa
+        // Mostrar panel de pausa
         botonMenuPausa.clicked += () =>
         {
             panelPausa.style.display = DisplayStyle.Flex;
@@ -92,7 +92,7 @@ public class LeccionController2 : MonoBehaviour
             HabilitarBotonesPregunta(true); 
         };
 
-// Volver al menú principal
+        // Volver al menú principal
         botonSalirMenu.clicked += () =>
         {
             Time.timeScale = 1f;
@@ -626,6 +626,7 @@ public class LeccionController2 : MonoBehaviour
         public int id_usuario;
         public int monedas;
     }
+    
     [System.Serializable]
     public class RespuestaPregunta
     {
