@@ -32,12 +32,14 @@ public class LeccionController2 : MonoBehaviour
     private Label textoRecompensa;
     private Button botonRecompensa;
 
-     private VisualElement panelPausa;
+    private VisualElement panelPausa;
     private Button botonMenuPausa;
     private Button botonSalirMenu;
     private Button botonTienda;
     private Button botonCerrarPausa;
     private Slider sliderVolumen;
+
+    private int totalLeccionesCurso;
 
 
     void Start()
@@ -162,16 +164,101 @@ public class LeccionController2 : MonoBehaviour
         Debug.Log("Todo bien se supone");
     }
 
+    [System.Serializable]
+    public class TotalLeccionesResponse
+    {
+        public int total;
+    }
+
+    int ObtenerUltimaLeccionDelCurso(int idCurso)
+    {
+        return idCurso * 4; // Asumiendo 4 lecciones por curso
+    }
+
+    private IEnumerator ActualizarCursoCompletado()
+    {
+        string url = "https://c5sixrvlkejnsmeukhsa5tghqq0dwchi.lambda-url.us-east-1.on.aws/";
+
+        UsuarioCurso curso = new UsuarioCurso
+        {
+            id_usuario = SesionManager.instancia.idUsuario,
+            id_curso = SesionManager.instancia.idCurso,
+            completado = true
+        };
+
+        string json = JsonUtility.ToJson(curso);
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(json);
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
+
+        if (request.result == UnityWebRequest.Result.Success)
+        {
+            Debug.Log("✅ Curso marcado como completado correctamente.");
+        }
+        else
+        {
+            Debug.LogError("❌ Error al actualizar curso completado: " + request.error);
+        }
+    }
+
     private IEnumerator FinalizarLeccionYVolver()
     {
-        // Asegura que ya se actualizó el progreso
         yield return StartCoroutine(ActualizarProgreso());
 
-        // Da un pequeño retraso extra para asegurar sincronización
         yield return new WaitForSeconds(0.2f);
+
         int idCurso = SesionManager.instancia.idCurso;
-        SceneManager.LoadScene("Curso" + idCurso, LoadSceneMode.Single);
+
+        if (SesionManager.instancia.idLeccion == ObtenerUltimaLeccionDelCurso(idCurso))
+        {
+            Debug.Log("🎉 Lección final del curso alcanzada. Actualizando...");
+
+            yield return StartCoroutine(ActualizarCursoCompletado());
+
+            if (SesionManager.instancia.idCurso < 3) // suponiendo que hay 3 cursos
+            {
+                SesionManager.instancia.idCurso++;
+                
+                SesionManager.instancia.idLeccion = (SesionManager.instancia.idCurso - 1) * 4 + 1;
+                Debug.Log("✅ Progreso inicializado para el nuevo curso.");
+            }
+
+            // Inicializar progreso del nuevo curso
+            Progreso nuevoProgreso = new Progreso
+            {
+                id_usuario = SesionManager.instancia.idUsuario,
+                id_curso = SesionManager.instancia.idCurso,
+                id_leccion = ObtenerUltimaLeccionDelCurso(SesionManager.instancia.idCurso - 1) // desbloquea la primera lección del nuevo curso
+            };
+
+            string urlProgreso = "https://hxylz66dvpeg52x2sqxubqziwm0knymz.lambda-url.us-east-1.on.aws/";
+            string jsonNuevo = JsonUtility.ToJson(nuevoProgreso);
+            UnityWebRequest requestNuevo = new UnityWebRequest(urlProgreso, "POST");
+            byte[] body = System.Text.Encoding.UTF8.GetBytes(jsonNuevo);
+            requestNuevo.uploadHandler = new UploadHandlerRaw(body);
+            requestNuevo.downloadHandler = new DownloadHandlerBuffer();
+            requestNuevo.SetRequestHeader("Content-Type", "application/json");
+
+            yield return requestNuevo.SendWebRequest();
+
+            if (requestNuevo.result == UnityWebRequest.Result.Success)
+            {
+                Debug.Log("✅ Progreso inicializado para el nuevo curso.");
+            }
+            else
+            {
+                Debug.LogError("❌ Error al inicializar progreso del nuevo curso: " + requestNuevo.error);
+            }
+
+        }
+
+        SceneManager.LoadScene("Curso" + SesionManager.instancia.idCurso, LoadSceneMode.Single);
     }
+    
 
     private IEnumerator CargarMonedas()
     {
@@ -649,5 +736,13 @@ public class LeccionController2 : MonoBehaviour
     {
         public string mensaje;
         public int puntaje;
+    }
+
+    [System.Serializable]
+    public class UsuarioCurso
+    {
+        public int id_usuario;
+        public int id_curso;
+        public bool completado;
     }
 }
