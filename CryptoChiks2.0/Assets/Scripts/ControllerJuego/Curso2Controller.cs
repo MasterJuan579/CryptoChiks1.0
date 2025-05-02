@@ -18,6 +18,8 @@ public class Curso2Controller : MonoBehaviour
     private Button botonCerrarPausa;
     private Slider sliderVolumen;
     private Button botonSiguienteCurso;
+    private Button botonAnteriorCurso;
+
 
     void Start()
     {
@@ -29,6 +31,9 @@ public class Curso2Controller : MonoBehaviour
 
         var root = GetComponent<UIDocument>().rootVisualElement;
         botonSiguienteCurso = root.Q<Button>("SiguienteCurso");
+        botonAnteriorCurso = root.Q<Button>("AnteriorCurso");
+        
+        botonAnteriorCurso.clicked += () =>{SceneManager.LoadScene("Curso1");};
         botonSiguienteCurso.clicked += () => { SceneManager.LoadScene("Curso3"); };
 
         Debug.Log("🟢 Curso2Controller START ejecutado correctamente para el usuario: " + SesionManager.instancia.idUsuario);

@@ -26,6 +26,6 @@
         <ui:Button name="BotonTienda" text="Ir a Tienda" style="width: 700px; height: 100px; font-size: 25px; background-color: rgb(255, 95, 95); color: white;" />
         <ui:Button name="BotonCerrarPausa" text="Cerrar" style="width: 700px; height: 100px; font-size: 25px; background-color: rgb(255, 95, 95); color: white;" />
     </ui:VisualElement>
-    <ui:Button name="BotonMenuPausa" text="Menu" style="position: absolute; top: 988px; left: 1665px; font-size: 25px; background-color: rgb(218, 46, 46); color: white; width: 178px; height: 84px;" />
     <ui:Button text="Logros" name="Logros" style="height: 100px; width: 215px; font-size: 25px;" />
+    <ui:Button name="BotonMenuPausa" text="||" style="position: absolute; top: 937px; left: 1733px; font-size: 25px; background-color: rgb(143, 0, 75); color: rgb(255, 255, 255); width: 113px; height: 82px; -unity-font-style: bold; -unity-text-outline-color: rgba(226, 0, 0, 0); margin-top: 10px; margin-right: 10px; margin-bottom: 10px; margin-left: 10px; padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; border-top-right-radius: 20px; border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; border-left-color: rgb(100, 0, 18); border-right-color: rgb(100, 0, 18); border-top-color: rgb(100, 0, 18); border-bottom-color: rgb(100, 0, 18);" />
 </ui:UXML>
