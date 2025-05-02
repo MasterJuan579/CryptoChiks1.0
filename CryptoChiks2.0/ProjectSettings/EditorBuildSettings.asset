@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscneasHomePage/Creditos.unity
     guid: d9aae34cdcdbd29418061fe187422958
-  - enabled: 0
-    path: Assets/Scenes/SeleccionNiveles.unity
-    guid: dd1186b7f2820c746b154ead8b6aff36
   - enabled: 1
     path: Assets/Scenes/inicio prueba.unity
     guid: 61d895f3dd7e5b44795585f7ab3d9720
@@ -41,5 +38,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/EscenasLeccion/Curso2-Lecciones/Curso2.unity
     guid: cda2913440e395d49827f65441dbc796
+    path: Assets/Scenes/EscenasLeccion/Curso1-Lecciones/ExplicacionLeccion2.unity
+    guid: ec2efb53659474645965181620e72070
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso1-Lecciones/ExplicacionLeccion3.unity
+    guid: a462fc20d9e536443b75879a9525e06f
+  - enabled: 1
+    path: Assets/Scenes/EscenasLeccion/Curso1-Lecciones/ExplicacionLeccion4.unity
+    guid: 9a34022c976c1414ea9645fd906cd920
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
