@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 
 public class LogrosController : MonoBehaviour
 {
-    private int idCurso = 1;
     private VisualElement root;
 
     private Dictionary<string, Color> coloresOriginales = new Dictionary<string, Color>()
@@ -15,8 +13,15 @@ public class LogrosController : MonoBehaviour
         { "Logro1", new Color32(199, 165, 0, 255) },
         { "Logro2", new Color32(164, 156, 156, 255) },
         { "Logro3", new Color32(56, 56, 56, 255) },
-        { "Logro4", new Color32(218, 215, 54, 255) }
-        // Agrega más si necesitas colores distintos por logro
+        { "Logro4", new Color32(218, 215, 54, 255) },
+        { "Logro5", new Color32(200, 200, 80, 255) },
+        { "Logro6", new Color32(180, 160, 90, 255) },
+        { "Logro7", new Color32(170, 140, 120, 255) },
+        { "Logro8", new Color32(160, 180, 120, 255) },
+        { "Logro9", new Color32(150, 150, 150, 255) },
+        { "Logro10", new Color32(140, 140, 100, 255) },
+        { "Logro11", new Color32(130, 110, 160, 255) },
+        { "Logro12", new Color32(120, 170, 140, 255) }
     };
 
     private Button botonPregunta;
@@ -65,7 +70,7 @@ public class LogrosController : MonoBehaviour
             };
         }
 
-        // Inicializar paneles de felicitación para Logro1 - Logro12 y Extra1 - Extra3
+        // Paneles de felicitación normales
         for (int i = 1; i <= 12; i++)
         {
             string panelId = $"PanelFelicitacion{i}";
@@ -83,6 +88,7 @@ public class LogrosController : MonoBehaviour
             }
         }
 
+        // Paneles de felicitación extra
         for (int i = 1; i <= 3; i++)
         {
             string panelId = $"PanelFelicitacionextra{i}";
@@ -105,24 +111,12 @@ public class LogrosController : MonoBehaviour
 
     private IEnumerator CargarProgresoYActualizarLogros()
     {
-        string url = "https://oewpzv2scmv3ot75p4c7t66gem0tyywb.lambda-url.us-east-1.on.aws/";
-        UnityWebRequest request = UnityWebRequest.Get(url + "?id_usuario=" + SesionManager.instancia.idUsuario + "&id_curso=" + idCurso);
+        yield return null;
 
-        Debug.Log("🔄 Consultando progreso...");
-        yield return request.SendWebRequest();
+        int leccionCompletada = SesionManager.instancia.idLeccion;
+        Debug.Log($"📘 Progreso global desde SesionManager: lección {leccionCompletada}");
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            ProgresoCurso progreso = JsonUtility.FromJson<ProgresoCurso>(request.downloadHandler.text);
-            int leccionCompletada = progreso.id_leccion;
-
-            Debug.Log($"📥 Lección completada: {leccionCompletada}");
-            ActualizarLogros(leccionCompletada);
-        }
-        else
-        {
-            Debug.LogError("❌ Error al cargar progreso: " + request.error);
-        }
+        ActualizarLogros(leccionCompletada);
     }
 
     private void ActualizarLogros(int leccionCompletada)
@@ -154,7 +148,7 @@ public class LogrosController : MonoBehaviour
             }
         }
 
-        // Mostrar logros extra
+        // Mostrar logros extra por curso completo
         Dictionary<string, int> extrasPorCurso = new()
         {
             { "Extra1", 4 },
